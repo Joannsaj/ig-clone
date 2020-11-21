@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'instagram',
     'bootstrap4',
+    'cloudinary',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -78,9 +79,9 @@ WSGI_APPLICATION = 'insta.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'tribune',
-        'USER': '<Your Database Username >',
-    'PASSWORD':'<Your Database Password>',
+        'NAME': 'instagram',
+        'USER': 'joan',
+    'PASSWORD':'Turquoise1',
     }
 }
 
@@ -121,3 +122,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+cloudinary.config( 
+  cloud_name = "joannsajj", 
+  api_key = "587211256199655", 
+  api_secret = "X_2R1bMqgEFf1kWFkLFTFMYlLyM" 
+)
