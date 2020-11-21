@@ -10,7 +10,7 @@ class Profile(models.Model):
     bio = models.TextField(null=True)
 
     def __str__(self):
-        return self.username
+        return self.user
 
 class Image(models.Model):
     image = CloudinaryField('image')
