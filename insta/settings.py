@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'instagram',
     'bootstrap4',
     'cloudinary',
+    'django_registration',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
