@@ -22,7 +22,7 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="" method="POST" enctype="multipart/form-data">
+                                    <form action="{% url 'home' %}" method="POST" enctype="multipart/form-data">
                                         {%csrf_token%}
                                         {%bootstrap_form form layout='inline'%}
                                         <button class="btn btn-sm btn-success" type="submit">Upload</button>
@@ -43,7 +43,7 @@
                     <div class="card-title">
                         <img src="{{image.user.profile_image.url}}" class="rounded-circle border ml-3 mt-2  mr-3"
                             alt="{{image.user.user.username}}" width="35" height="35">
-                        <a href="{% url 'user_profile' image.user.user.username  %}"
+                        <a href="{% url 'userProfile' image.user.user.username  %}"
                             class="mt-4 user">{{image.user.user.username|title}}</a>
                     </div>
                     <div class="card-body mb-4">
@@ -86,7 +86,7 @@
                         </div>
                         <div class="col-md-6 mt-4 user-detail">
                             <span class=" text-secondary"><a
-                                    href="{% url 'user_profile' user.username %}">{{ user.username }}</a></span> <br>
+                                    href="{% url 'userProfile' user.username %}">{{ user.username }}</a></span> <br>
                             <span class=" inname">{{ user.profile.name }}</span>
                         </div>
                     </div>
@@ -103,7 +103,7 @@
                                         </div>
                                         <div class="col-md-6 mr-2 mt-2">
                                             <span><a
-                                                    href="{% url 'user_profile' user.username  %}">{{user.username}}</a></span>
+                                                    href="{% url 'userProfile' user.username  %}">{{user.username}}</a></span>
                                         </div>
                                         <div class="col-md-4">
                                         </div>

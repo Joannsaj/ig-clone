@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Profile, Image, Comment
 from .forms import ProfileForm, ImageForm, CommentForm, UserForm
@@ -60,7 +60,7 @@ def profile(request, username):
 @login_required(login_url='login')
 def get_profile(request, username):
     user = get_object_or_404(User, username=username)
-    images = user.profile.images.all()
+    images = user.profile.image.all()
 
     if request.user == user:
         return redirect('profile', username=request.user.username)
