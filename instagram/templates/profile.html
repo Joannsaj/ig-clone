@@ -2,5 +2,8 @@
 
 {% block content %}
 <p>k</p>
-<h1>{{profile.user}}</h1>
+<h1>{{user.username}}</h1>
+<h1>{{user.id}}</h1>
+<h1>{{profile.user.username}}</h1>
+<p><a href="{%url 'updateProfile'%}">Update Profile</a></p>
 {% endblock %}

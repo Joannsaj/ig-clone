@@ -2,7 +2,7 @@
 {% load bootstrap4 %}
 {% block content %}
 <div class="container">
-    <form action="{% url 'newsToday'%}" method="POST">
+    <form action="{% url 'updateProfile'%}" method="POST">
         {%csrf_token%}
         {%bootstrap_form form layout='inline'%}
         <button type="submit">Submit</button>

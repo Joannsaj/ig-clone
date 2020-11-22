@@ -7,11 +7,15 @@ from django.contrib.auth.models import User
 class Profile(models.Model):
     profile_image = CloudinaryField('image', null=True)
     name = models.CharField(max_length=30, null=True)
-    user = models.ForeignKey(User ,on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     bio = models.TextField(null=True)
 
     def __str__(self):
         return self.user
+
+    def save_profile(self):
+        self.save()
+    
 
 class Image(models.Model):
     image = CloudinaryField('image')
@@ -21,9 +25,9 @@ class Image(models.Model):
     likes = models.BooleanField(null= True)
     comments = models.TextField(null=True)
 
-class Comment(db.Model):
-    __tablename__ = 'comments'
+# class Comment(db.Model):
+#     __tablename__ = 'comments'
 
-    comment = db.Column(db.String(255))
-    user_id = models.ForeignKey('Profile' ,on_delete=models.CASCADE)
-    image_id = db.Column(db.Integer,db.ForeignKey('blogs.id'))    
+#     comment = db.Column(db.String(255))
+#     user_id = models.ForeignKey('Profile' ,on_delete=models.CASCADE)
+#     image_id = db.Column(db.Integer,db.ForeignKey('blogs.id'))    

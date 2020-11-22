@@ -10,20 +10,25 @@ def home(request):
 
 @login_required(login_url='/accounts/login/')
 def update_profile(request):
-    current_user == request.user:
-        if request.method == 'POST':
-        form = ProfileForm(request.POST, request.FILES)
+    current_user = request.user
+    form_class = ProfileForm
+    form = form_class(request.POST , request.FILES)
+    if request.method == 'POST':
+        
         if form.is_valid():
-            profille = form.save(commit=False)
+            profile = form.save(commit=False)
             profile.user = current_user
-            profile.save()
+            profile.save_profile()
             return redirect('profile')
+
+        else:
+            form = ProfileForm()    
    
     return render(request,'update_profile.html',{"form":form})
     
 @login_required(login_url='/accounts/login/')
-def profile(request)
-    current_user = request.user:
-    profile = Profile.objects.filter(id = user.id)
+def profile(request):
+    current_user = request.user
+    profile = Profile.objects.filter(id = current_user.id)
 
     return render(request,'profile.html', {'profile':profile})
