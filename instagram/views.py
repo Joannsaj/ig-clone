@@ -56,3 +56,13 @@ def profile(request, username):
         profile_form = ProfileForm(instance=request.user.profile)
 
     return render(request, 'profile.html', {'user_form': user_form, 'profile_form': profile_form, })#'images': images, })
+
+@login_required(login_url='login')
+def get_profile(request, username):
+    user = get_object_or_404(User, username=username)
+    images = user.profile.images.all()
+
+    if request.user == user:
+        return redirect('profile', username=request.user.username)
+    
+    return render(request, 'instagram/user_profile.html', {'user':user, 'images':images})
