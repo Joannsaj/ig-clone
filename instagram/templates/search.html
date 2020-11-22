@@ -1,6 +1,33 @@
-{%extends 'base.html'%}
-
+{%extends 'all-news/base.html'%}
 {% block content %}
+<div class="container">
+
+    <div class="row">
+        {% if results%}
+        <h2>Found {{ results|length }} of searched term {{message}}</h2>
+        {% else %}
+        <h2> Found 0 users for the search term {{message}}</h2>
+        {% endif %}
+
+    </div>
 
 
+    {% if results %}
+    {% for item in results %}
+    <div class="row">
+        <div class="col-md-3">
+            <img src="{{item.user.profile.profile_picture.url}}" alt="" class="rounded-circle border ml-2 mt-2  mr-3"
+                style="width: 2cm; height: 2cm;">
+        </div>
+        <div class="col-md-6 mt-1">
+            <span><strong><a
+                        href="{% url 'profile' item.user.username  %}">{{item.user.username}}</a></strong></span><br>
+            <span class="text-secondary">{{item.user.profile.name}}</span>
+        </div>
+
+    </div>
+    {% endfor %}
+    {% endif %}
+
+</div>
 {% endblock %}
