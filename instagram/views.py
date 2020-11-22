@@ -1,12 +1,29 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .models import Profile
-from .forms import ProfileForm
+from .models import Profile, Image, Comment
+from .forms import ProfileForm, ImageForm, CommentForm
+# from django.http import HttpResponseRedirect
 
 # Create your views here.
 @login_required(login_url='/accounts/login/')
 def home(request):
-    return render(request,'index.html')
+    images = Image.objects.all()
+    users = User.objects.exclude(id=request.user.id)
+    if request.method == 'POST':
+        form = ImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            image = form.save(commit=False)
+            image.user = request.user.profile
+            image.save()
+            return redirect('home')
+    else:
+        form = PostForm(){
+        'images': images,
+        'form': form,
+        'users': users,
+
+    }
+    return render(request, 'index.html', {'images': images, 'form': form, 'users': users })
 
 @login_required(login_url='/accounts/login/')
 def update_profile(request):
