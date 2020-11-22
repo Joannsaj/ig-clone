@@ -65,4 +65,15 @@ def get_profile(request, username):
     if request.user == user:
         return redirect('profile', username=request.user.username)
     
-    return render(request, 'instagram/user_profile.html', {'user':user, 'images':images})
+    return render(request, 'user_profile.html', {'user':user, 'images':images})
+
+@login_required(login_url='/accounts/login/')
+def search_profile(request):
+    if 'search_user' in request.GET and request.GET['search_user']:
+        name = request.GET.get("search_user")
+        searched_users = Profile.search_profile(name)
+        message = f'{name}'
+        return render(request, 'search.html', {'results': searched_users,'message': message})
+    else:
+        message = "You haven't searched for any user"
+    return render(request, 'search.html', {'message': message})    
