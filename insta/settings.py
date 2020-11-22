@@ -132,3 +132,5 @@ cloudinary.config(
   api_key = "587211256199655", 
   api_secret = "X_2R1bMqgEFf1kWFkLFTFMYlLyM" 
 )
+
+LOGIN_REDIRECT_URL = '/insta/home/'
