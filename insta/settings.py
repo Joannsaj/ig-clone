@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'instagram',
     'bootstrap4',
     'cloudinary',
+    'tinymce',
     'django_registration',
     'django.contrib.admin',
     'django.contrib.auth',
