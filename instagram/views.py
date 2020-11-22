@@ -57,7 +57,7 @@ def profile(request, username):
 
     return render(request, 'profile.html', {'user_form': user_form, 'profile_form': profile_form, })#'images': images, })
 
-@login_required(login_url='login')
+@login_required(login_url='/accounts/login/')
 def get_profile(request, username):
     user = get_object_or_404(User, username=username)
     images = user.profile.image.all()
