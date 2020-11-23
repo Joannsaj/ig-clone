@@ -7,21 +7,20 @@ from django.contrib.auth.models import User
 # from django.http import HttpResponseRedirect
 
 # Create your views here.
-@login_required(login_url='/accounts/login/')
+@login_required(login_url='accounts/login/')
 def home(request):
-    images = Image.objects.all()
     users = User.objects.exclude(id=request.user.id)
+    images = Image.images()
     if request.method == 'POST':
-        form = ImageForm(request.POST, request.FILES)
-        if form.is_valid():
+        form = ImageForm(request.POST,request.FILES)
+        if form.is_valid() :
             image = form.save(commit=False)
-            image.user = request.user.profile
+            image.profile_key = request.user.profile
             image.save()
             return redirect('home')
     else:
         form = ImageForm()
-
-    return render(request, 'index.html', {'images': images, 'form': form, 'users': users })
+    return render(request,'index.html',{"users":users,"images":images,"form":form})
 
 @login_required(login_url='/accounts/login/')
 def update_profile(request):
@@ -55,7 +54,7 @@ def profile(request, username):
         user_form = UserForm(instance=request.user)
         profile_form = ProfileForm(instance=request.user.profile)
 
-    return render(request, 'profile.html', {'user_form': user_form, 'profile_form': profile_form, })#'images': images, })
+    return render(request, 'profile.html', {'user_form': user_form, 'profile_form': profile_form, 'images': images, })
 
 @login_required(login_url='/accounts/login/')
 def get_profile(request, username):

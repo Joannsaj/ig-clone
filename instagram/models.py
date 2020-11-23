@@ -40,7 +40,7 @@ class Image(models.Model):
     image = CloudinaryField('image')
     image_name = models.CharField(max_length=30)
     image_caption = models.TextField(null=True)
-    profile_key = models.ForeignKey('Profile' ,on_delete=models.CASCADE, related_name='image')
+    profile_key = models.ForeignKey(Profile ,on_delete=models.CASCADE, related_name='image', null=True)
     likes = models.ManyToManyField(User, related_name='likes', blank=True, )
     created = models.DateTimeField(auto_now_add=True, null=True)
 
@@ -60,8 +60,13 @@ class Image(models.Model):
     def likes(self):
         return self.likes.count()
 
+    @classmethod
+    def images(cls):
+        images = cls.objects.all()
+        return images
+        
     def __str__(self):
-        return f'{self.profile_key.name} Image'
+        return self.image
 
 class Comment(models.Model):
     comment = models.TextField()
