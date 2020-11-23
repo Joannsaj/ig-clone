@@ -1,4 +1,4 @@
-{%extends 'all-news/base.html'%}
+{%extends 'base.html'%}
 {% block content %}
 <div class="container">
 
@@ -16,12 +16,12 @@
     {% for item in results %}
     <div class="row">
         <div class="col-md-3">
-            <img src="{{item.user.profile.profile_picture.url}}" alt="" class="rounded-circle border ml-2 mt-2  mr-3"
+            <img src="{{item.user.profile.profile_image.url}}" alt="" class="rounded-circle border ml-2 mt-2  mr-3"
                 style="width: 2cm; height: 2cm;">
         </div>
-        <div class="col-md-6 mt-1">
+        <div class="col-md-6 ">
             <span><strong><a
-                        href="{% url 'profile' item.user.username  %}">{{item.user.username}}</a></strong></span><br>
+                        href="{% url 'userProfile' item.user.username  %}">{{item.user.username}}</a></strong></span><br>
             <span class="text-secondary">{{item.user.profile.name}}</span>
         </div>
 

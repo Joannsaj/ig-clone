@@ -8,9 +8,10 @@
                 <div class="row">
                     <div class="col-md-1"></div>
                     <div class="col-md-3">
-                        <img class="rounded-circle account-img" src="{{ user.profile.profile_image.url }}" alt="image">
+                        <img class="rounded-circle account-img" src="{{ user.profile.profile_image.url }}" alt="image"
+                            style="width: 2cm; height: 2cm;">
                     </div>
-                    <div class="col-md-6 mt-3">
+                    <div class="col-md-6 ">
                         <div class="media-body">
                             <div class="account-heading"><span
                                     class="mr-3 text-secondary username">{{ user.username }}</span>
@@ -22,8 +23,7 @@
 
                             <div class="post-details mt-3 mb-3">
                                 <span class="mr-5"><strong>{{images.count}}</strong> Posts</span>
-                                <!-- <span class="mr-5"> <strong>{{ user.profile.followers.count }}</strong> followers</span>
-                                <span class="mr-5"> <strong>{{ user.profile.following.count }}</strong> following</span> -->
+
                             </div>
                             <h5>{{ user.profile.name }}</h5>
                             <p class="text-secondary">{{ user.profile.bio }}</p>
@@ -32,21 +32,7 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade bd-example-modal-sm" id="ModalCenter" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-sm" role="document">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <a class="D-block mx-auto" href="">Change Password</a>
-                        <hr>
-                        <a class="D-block mx-auto" href="{% url 'logout' %}">Log Out</a>
-                        <hr>
-                        <a class="D-block mx-auto" href="" data-dismiss="modal">Close</a>
-                    </div>
 
-                </div>
-            </div>
-        </div>
         <div class="modal fade bd-example-modal-md" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-md ">
@@ -62,16 +48,11 @@
         </div>
     </div>
     <hr class="mt-4">
-    <div class="card-columns">
+    <div class="row">
         {% for image in images %}
-        <div class="card">
+        <div class="card col-md-3">
             <div class="card-body">
-                <img src="{{image.image.url}}" alt="{{image.image_caption}}" class="card-img">
-                <p id="overlay" class="text">
-                    <i class="fas fa-heart" style="color:white; font-size: 18"></i>
-                    <span style="color: white">{{image.likes.count}}</span>
-                    <i class="fas fa-comment ml-4" style="color: white"></i> <span
-                        style="color: white">{{image.comments.count}}</span></p>
+                <img src="{{image.image.url}}" alt="{{image.image_caption}}" class="card-img" style="width: 100%;">
 
             </div>
         </div>

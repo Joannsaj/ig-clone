@@ -43,7 +43,7 @@ def update_profile(request):
     
 @login_required(login_url='/accounts/login/')
 def profile(request, username):
-    # images = request.user.profile.all()
+    images = request.user.profile.image.all()
     if request.method == 'POST':
         user_form = UserForm(request.POST, instance=request.user)
         profile_form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
