@@ -11,7 +11,7 @@ A python application that is a clone of the instagram project. As a user you sho
 * Like a picture and leave a comment on it.
 
 ## Live link
-
+https://thegramclone.herokuapp.com/
 
 ### Technologies
 * Python v3.8
